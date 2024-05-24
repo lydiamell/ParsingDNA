@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Analysis Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 35px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center; /* Center align content */
+        }
+        textarea {
+            width: 600px;
+            height: 150px; /* Increased height */
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 35px;
+            resize: none; /* Prevent resizing */
+            font-size: 35px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-top: 20px;
+            padding: 10px; /* Padding around the result */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f0f0f0; /* Light grey background */
+            display: inline-block; /* Display inline */
+        }
+        .error-message {
+            margin-top: 20px;
+            color: red; /* Error message color */
+            border: 1px solid red; /* Red border */
+            border-radius: 50%; /* Circular border */
+            padding: 10px; /* Padding around the error message */
+            display: inline-block; /* Display inline */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Write your sequence</h2>
+        <form id="dnaAnalysisForm">
+            <textarea id="dnaInput" placeholder="Enter DNA sequence..." required></textarea>
+            
+            <button type="button" onclick="calculateRepetitions()">Calculate Repetitions</button>
+        </form>
+        <div id="gcContentOutput"></div>
+        <div id="repetitionsOutput"></div>
+    </div>
+
+    <script>
+        function calculateGCContent() {
+            var dnaSequence = document.getElementById('dnaInput').value.toUpperCase();
+            var gcCount = 0;
+            var totalNucleotides = dnaSequence.length;
+
+            // Check for invalid characters
+            if (/[^ATCG]/.test(dnaSequence)) {
+                document.getElementById('gcContentOutput').innerHTML = '<p class="error-message">Invalid DNA sequence. Only A, T, C, and G are allowed.</p>';
+                return;
+            }
+
+            // Count GC nucleotides
+            for (var i = 0; i < dnaSequence.length; i++) {
+                if (dnaSequence[i] === 'G' || dnaSequence[i] === 'C') {
+                    gcCount++;
+                }
+            }
+
+            }
+
+            function calculateRepetitions() {
+    // Clear previous output
+    document.getElementById('repetitionsOutput').innerHTML = '';
+
+    var dnaSequence = document.getElementById('dnaInput').value.toUpperCase();
+    var gcRepetitions = 0;
+    var atRepetitions = 0;
+
+    // Check for invalid characters
+    if (/[^ATCG]/.test(dnaSequence)) {
+        document.getElementById('repetitionsOutput').innerHTML = '<p class="error-message">Invalid DNA sequence. Only A, T, C, and G are allowed.</p>';
+        return;
+    }
+
+    // Count GC and AT repetitions
+    for (var i = 0; i < dnaSequence.length - 1; i++) {
+        var diNucleotide = dnaSequence.substr(i, 2);
+        if (diNucleotide === 'GC') {
+            gcRepetitions++;
+        } else if (diNucleotide === 'AT') {
+            atRepetitions++;
+        }
+    }
+
+    // Display repetitions
+    document.getElementById('repetitionsOutput').innerHTML = '<p>GC Repetitions: ' + gcRepetitions + '</p><p>AT Repetitions: ' + atRepetitions + '</p>';
+}
+    </script>
+</body>
+</html>

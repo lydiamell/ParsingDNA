@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Complement of DNA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 35px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center; /* Center align content */
+        }
+        textarea {
+            width: 600px;
+            height: 150px; /* Increased height */
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 35px;
+            resize: none; /* Prevent resizing */
+            font-size: 35px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        p.error-message {
+            margin-top: 20px;
+            color: red; /* Error message color */
+            border: 1px solid red; /* Red border */
+            border-radius: 50%; /* Circular border */
+            padding: 10px; /* Padding around the error message */
+            display: inline-block; /* Display inline */
+        }
+        p.rna-output {
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif; /* Roboto font */
+            background-color: #228B22; /* Green forest background */
+            color: white;
+            padding: 10px; /* Padding around the RNA sequence output */
+            display: inline-block; /* Display inline */
+            border-radius: 5px; /* Rounded corners */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reverse Complement of DNA</h2>
+        <form id="reverseComplementForm">
+            <textarea id="dnaInput" placeholder="Enter DNA sequence..." required></textarea>
+            <button type="button" onclick="reverseComplement()">Find Reverse Complement</button>
+        </form>
+        <div id="reverseComplementOutput"></div>
+    </div>
+
+    <script>
+        function reverseComplement() {
+            var dnaSequence = document.getElementById('dnaInput').value.toUpperCase();
+            var reverseComplement = '';
+
+            // Check for invalid characters
+            if (/[^ATCG]/.test(dnaSequence)) {
+                document.getElementById('reverseComplementOutput').innerHTML = '<p class="error-message">Invalid DNA sequence. Only A, T, C, and G are allowed.</p>';
+                return;
+            }
+
+            for (var i = dnaSequence.length - 1; i >= 0; i--) {
+                var nucleotide = dnaSequence[i];
+                switch (nucleotide) {
+                    case 'A':
+                        reverseComplement += 'T';
+                        break;
+                    case 'T':
+                        reverseComplement += 'A';
+                        break;
+                    case 'C':
+                        reverseComplement += 'G';
+                        break;
+                    case 'G':
+                        reverseComplement += 'C';
+                        break;
+                }
+            }
+            document.getElementById('reverseComplementOutput').innerHTML = '<p class="rna-output">Reverse Complement: ' + reverseComplement + '</p>';
+        }
+    </script>
+</body>
+</html>

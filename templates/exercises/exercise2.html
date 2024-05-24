@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write your RNA to convert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 35px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center; /* Center align content */
+        }
+        textarea {
+            width: 600px;
+            height: 150px; /* Increased height */
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 35px;
+            resize: none; /* Prevent resizing */
+            font-size : 35px; /*Increase the size*/
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button.nucleotide {
+            background-color: #c0e0ff;
+        }
+        p {
+            margin-top: 20px;
+        }
+        .error-message {
+            font-family: 'Roboto', sans-serif; /* Roboto font */
+            background-color: red;
+            color: white;
+            border-radius: 50%; /* Circle shape */
+            padding: 10px; /* Adjust padding as needed */
+            display: inline-block;
+        }
+        .dna-output {
+            font-family: 'Roboto', sans-serif; /* Roboto font */
+            background-color: #228B22; /* Green forest background */
+            color: white;
+            padding: 10px; /* Adjust padding as needed */
+            display: inline-block;
+            border-radius: 5px; /* Rounded corners */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Write your RNA to convert</h2>
+        <form id="rnaForm">
+            <textarea id="rnaInput" placeholder="Enter RNA sequence..." required></textarea>
+            <div class="nucleotide-box">
+                <button type="button" class="nucleotide" onclick="appendToRNA('A')">A</button>
+                <button type="button" class="nucleotide" onclick="appendToRNA('U')">U</button>
+                <button type="button" class="nucleotide" onclick="appendToRNA('C')">C</button>
+                <button type="button" class="nucleotide" onclick="appendToRNA('G')">G</button>
+            </div>
+            <button type="button" onclick="convertToDNA()">Convert</button>
+        </form>
+        <div id="dnaOutput"></div>
+    </div>
+
+    <script>
+        function convertToDNA() {
+            var rnaSequence = document.getElementById('rnaInput').value.toUpperCase();
+            var dnaSequence = '';
+
+            if (/[^AUCG]/.test(rnaSequence)) {
+                document.getElementById('dnaOutput').innerHTML = '<span class="error-message">Invalid RNA sequence. Only A, U, C, and G are allowed.</span>';
+                return;
+            }
+
+            for (var i = 0; i < rnaSequence.length; i++) {
+                if (rnaSequence[i] === 'A') {
+                    dnaSequence += 'T';
+                } else if (rnaSequence[i] === 'U') {
+                    dnaSequence += 'A';
+                } else if (rnaSequence[i] === 'C') {
+                    dnaSequence += 'G';
+                } else if (rnaSequence[i] === 'G') {
+                    dnaSequence += 'C';
+                }
+            }
+
+            document.getElementById('dnaOutput').innerHTML = '<div class="dna-output">DNA sequence: ' + dnaSequence + '</div>';
+        }
+
+        function appendToRNA(nucleotide) {
+            document.getElementById('rnaInput').value += nucleotide;
+        }
+    </script>
+</body>
+</html>

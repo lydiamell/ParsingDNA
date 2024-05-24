@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Website</title>
+    <style>
+        body {
+            background-color: #f0f5ff; /* Pale blue background color */
+            font-family: Arial, sans-serif; /* Use generic font */
+            margin: 0;
+            padding: 0;
+        }
+        .title {
+            text-align: center; /* Center text horizontally */
+            color: #203f5a; /* Darker text color */
+            font-size: 3em; /* Larger font size */
+            border-radius: 10px; /* Rounded borders */
+            padding: 20px; /* Inner spacing */
+            background-color: rgba(240, 245, 255, 0.8); /* Slightly transparent background */
+            margin-bottom: 20px; /* Space below the title */
+        }
+        .exercises {
+            max-width: 800px; /* Limit width of exercise container */
+            margin: 0 auto; /* Center horizontally */
+        }
+        .exercise {
+            background-color: rgba(180, 200, 220, 0.8); /* Slightly darker background color */
+            border-radius: 10px; /* Rounded borders */
+            padding: 20px; /* Inner spacing */
+            margin-bottom: 20px; /* Space below each exercise */
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+        .exercise-content {
+            display: none; /* Hide exercise content by default */
+            background-color: rgba(180, 200, 220, 0.8); /* Slightly darker background color */
+            border-radius: 10px; /* Rounded borders */
+            padding: 20px; /* Inner spacing */
+            margin-bottom: 20px; /* Space below each exercise */
+        }
+        img {
+            margin-right: 30px; /* Add some margin between the image and text */
+            width: 80px; /* Adjust the width of the image to make it smaller */
+        }
+    </style>
+    <div class="title">
+        <h1><img src="/static/logo.gif" alt="GIF">DNA parsing exercices <img src="/static/logo.gif" alt="GIF"></h1>
+    </div>
+    <div class="exercises">
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 1: DNA to RNA conversion</h2>
+            <div class="exercise-content">
+                <!-- Load Exercise 1 content here -->
+        <iframe src="/exercise1" frameborder="0" width="100%" height="500px"></iframe>
+            </div>
+            </div>
+            <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 2: RNA to DNA conversion</h2>
+            <div class="exercise-content">
+                <!-- Add content for Exercise 2 here -->
+    <iframe src="/exercise2" frameborder="0" width="100%" height="500px"></iframe>
+            </div>
+            </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 3: Reverse complement</h2>
+            <div class="exercise-content">
+                <!-- Add for Exercise 3 here -->
+                <iframe src="/exercise3" frameborder="0" width="100%" height="500px"></iframe>
+            </div>
+        </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 4: GC and AT repetition</h2>
+            <div class="exercise-content">
+                <!-- Add content for Reverse Complement exercise here -->
+                <iframe src="/exercise4" frameborder="0" width="100%" height="500px"></iframe>
+            </div>
+        </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 5: Motif finding</h2>
+            <div class="exercise-content">
+                <!-- Add content for GC Content Calculation exercise here -->
+                <iframe src="/exercise5" frameborder="0" width="100%" height="500px"></iframe>
+            </div>
+        </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 6: Motif Search</h2>
+            <div class="exercise-content">
+                <!-- Add content for Motif Search exercise here -->
+            </div>
+        </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 7: Transcription and Translation</h2>
+            <div class="exercise-content">
+                <!-- Add content for Transcription and Translation exercise here -->
+            </div>
+        </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 8: ORF Detection</h2>
+            <div class="exercise-content">
+                <!-- Add content for ORF Detection exercise here -->
+            </div>
+        </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 9: Mutation Analysis</h2>
+            <div class="exercise-content">
+                <!-- Add content for Mutation Analysis exercise here -->
+            </div>
+        </div>
+        <div class="exercise" onclick="toggleExercise(this)">
+            <h2>Exercise 10: Sequence Alignment</h2>
+            <div class="exercise-content">
+                <!-- Add content for Sequence Alignment exercise here -->
+            </div>
+        </div>
+    </div>
+    <!-- Add more content below -->
+    <div style="height: 2000px;"></div> <!-- Placeholder for more content -->
+
+    <script>
+        function toggleExercise(exercise) {
+            var content = exercise.querySelector('.exercise-content');
+            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motif Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 35px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center; /* Center align content */
+        }
+        textarea {
+            width: 600px;
+            height: 150px; /* Increased height */
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 35px;
+            resize: none; /* Prevent resizing */
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-top: 20px;
+            padding: 10px; /* Padding around the result */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f0f0f0; /* Light grey background */
+            display: inline-block; /* Display inline */
+        }
+        .error-message {
+            margin-top: 20px;
+            color: red; /* Error message color */
+            border: 1px solid red; /* Red border */
+            border-radius: 50%; /* Circular border */
+            padding: 10px; /* Padding around the error message */
+            display: inline-block; /* Display inline */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Motif Search</h2>
+        <form id="motifSearchForm">
+            <textarea id="dnaInput" placeholder="Enter DNA sequence..." required></textarea>
+            <textarea id="motifInput" placeholder="Enter motif..." required></textarea>
+            <button type="button" onclick="searchMotif()">Search</button>
+        </form>
+        <div id="motifSearchOutput"></div>
+    </div>
+
+    <script>
+        function searchMotif() {
+            var dnaSequence = document.getElementById('dnaInput').value.toUpperCase();
+            var motif = document.getElementById('motifInput').value.toUpperCase();
+            var occurrences = [];
+            var index = -1;
+
+            // Check for invalid characters
+            if (/[^ATCG]/.test(dnaSequence) || /[^ATCG]/.test(motif)) {
+                document.getElementById('motifSearchOutput').innerHTML = '<p class="error-message">Invalid DNA sequence or motif. Only A, T, C, and G are allowed.</p>';
+                return;
+            }
+
+            // Find occurrences of the motif in the DNA sequence
+            while ((index = dnaSequence.indexOf(motif, index + 1)) !== -1) {
+                occurrences.push(index);
+            }
+
+            // Display occurrences
+            if (occurrences.length > 0) {
+                document.getElementById('motifSearchOutput').innerHTML = '<p>Occurrences of motif: ' + occurrences.join(', ') + '</p>';
+            } else {
+                document.getElementById('motifSearchOutput').innerHTML = '<p>No occurrences of the motif found in the DNA sequence.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
